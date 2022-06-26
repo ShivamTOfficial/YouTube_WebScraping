@@ -13,11 +13,42 @@ We copy the API Key from Google Developers Console and make a variable by the sa
 
     api_key = 'AIzaSyCTVT2ssuK5yiOOJ9KFaZq6JJpVuebdiyM'
 
-Next, we need to get the Channel IDs of our favourite channels. [Watch this video for to see how to do that]()
+Next, we need to get the Channel IDs of our favourite channels. </br> [Watch this video to see how to do that]()
 
     channel_ids = ['UCHnyfMqiRRG1u-2MsSQLbXA', # Veritasium
-                   'UCLLw7jmFsvfIVaUFsLs8mlQ', # Luke Barousse 
-                   'UCiT9RITQ9PW6BhXK0y2jaeg', # Ken Jee
-                   'UC7cs8q-gJRlGwj4A8OmCmXg', # Alex the analyst
-                   'UC2UXDak6o7rBm23k3Vv5dww' # Tina Huang
+                   'UCcZhBlipmIFlfZjt-Ji4Udg', # Conor Neill
+                   'UCOajpsI8t3Eg-u-s2j_c-cQ', # Movie Flame
+                   'UChYfrRp_CWyqOt-ZYJGOgmA', # Chuck Severance
+                   'UC2UXDak6o7rBm23k3Vv5dww'  # Dhruv Rathee 
                   ]
+
+    youtube = build('youtube', 'v3', developerKey=api_key)
+    
+    
+### Function to get Channel Statistics
+
+    def get_channel_stats(youtube, channel_ids):
+    all_data = []
+    request = youtube.channels().list(
+                part='snippet,contentDetails,statistics',
+                id=','.join(channel_ids))
+    response = request.execute() 
+    
+    for i in range(len(response['items'])):
+        data = dict(Channel_name = response['items'][i]['snippet']['title'],
+                    Subscribers = response['items'][i]['statistics']['subscriberCount'],
+                    Views = response['items'][i]['statistics']['viewCount'],
+                    Total_videos = response['items'][i]['statistics']['videoCount'],
+                    playlist_id = response['items'][i]['contentDetails']['relatedPlaylists']['uploads'])
+        all_data.append(data)
+    
+    return all_data
+    
+    
+    
+    channel_statistics = get_channel_stats(youtube, channel_ids)
+    channel_data = pd.DataFrame(channel_statistics)
+    channel_data
+    
+### Creating CSV file of data
+    channel_data.to_csv('blablablah.csv', index = False)
