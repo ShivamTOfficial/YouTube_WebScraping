@@ -13,7 +13,8 @@ We copy the API Key from Google Developers Console and make a variable by the sa
 
     api_key = 'AIzaSyCTVT2ssuK5yiOOJ9KFaZq6JJpVuebdiyM'
 
-Next, we need to get the Channel IDs of our favourite channels. </br> [Watch this video to see how to do that]()
+### Fetching the Channel IDs of our favourite channels. 
+( [Watch this video to see how to do that (will upload soon...)]() )
 
     channel_ids = ['UCHnyfMqiRRG1u-2MsSQLbXA', # Veritasium
                    'UCcZhBlipmIFlfZjt-Ji4Udg', # Conor Neill
