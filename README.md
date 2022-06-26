@@ -44,7 +44,7 @@ Next, we need to get the Channel IDs of our favourite channels. </br> [Watch thi
     
     return all_data
     
-    
+### Get Channel Stats
     
     channel_statistics = get_channel_stats(youtube, channel_ids)
     channel_data = pd.DataFrame(channel_statistics)
