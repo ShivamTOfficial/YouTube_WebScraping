@@ -53,3 +53,15 @@ We copy the API Key from Google Developers Console and make a variable by the sa
     
 ### Creating CSV file of data
     channel_data.to_csv('blablablah.csv', index = False)
+    
+    
+### Count Of Subscribers/ Views/ Total Videos
+    channel_data['Subscribers'] = pd.to_numeric(channel_data['Subscribers'])
+    channel_data['Views'] = pd.to_numeric(channel_data['Views'])
+    channel_data['Total_videos'] = pd.to_numeric(channel_data['Total_videos'])
+    channel_data.dtypes
+
+### Visualizing the Results
+
+    sns.set(rc={'figure.figsize':(10,8)})
+    ax = sns.barplot(x='Channel_name', y='Subscribers', data=channel_data)
